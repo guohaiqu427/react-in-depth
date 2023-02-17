@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
   entry: "./src/index.js",
+  mode:"development",
   output: {
     path: path.resolve("dist"),
     filename: "bundle.js"
@@ -13,7 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude:/(node_modules)/,
         use: "babel-loader"
       }
     ]
@@ -29,13 +30,11 @@ module.exports = {
     })
   ],
   devServer: {
-    // 指定开发环境应用运行的根据目录
-    contentBase: "./dist",
-    // 指定控制台输出的信息
-    stats: "errors-only",
-    // 不启动压缩
+    static: {
+      directory: path.join(__dirname, './dist'),
+    },
     compress: false,
     host: "localhost",
     port: 5000
-  }
+  },
 }
