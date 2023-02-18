@@ -17,11 +17,8 @@ export default function mountComponent(virtualDOM, container) {
     }else{
         mountNativeElement(nextVirtualDOM, container)
     }
-
-   
-
 } 
 
 function extract (virtualDOM){
-    return virtualDOM.type()
+    return virtualDOM.type(virtualDOM.props || {})
 }
