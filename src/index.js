@@ -24,8 +24,11 @@ let container = document.getElementById("root")
 // end: test native element 
 
 // start: test function component 
-  function Heart() {
+  function Demo() {
     return <div>&hearts;</div>
+  }
+  function Heart() {
+    return <Demo />
   }
   TinyReact.render(<Heart/>, container)
 // end: test function component 
