@@ -25,7 +25,7 @@ let container = document.getElementById("root")
 
 // start: test function component 
   function Heart() {
-    return <div> heart</div>
+    return <div>&hearts;</div>
   }
   TinyReact.render(<Heart/>, container)
 // end: test function component 
