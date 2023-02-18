@@ -1,3 +1,4 @@
+import createDOMElement from "./createDOMElement"
 import mountElement from "./mountElement"
 import updateNodeElements from "./updateNodeElement"
 import updateTextNode from "./updateTextNode"
@@ -6,7 +7,11 @@ export default function diff( virtualDOM,container,oldDOM) {
     if(!oldDOM){
         // no old DOM! 
         mountElement(virtualDOM, container)
-    }else if(oldVirtualDOM && oldVirtualDOM.type === virtualDOM.type){
+    }else if(oldVirtualDOM.type !== virtualDOM.type && typeof virtualDOM.type !== 'function'){
+        const newElement = createDOMElement(virtualDOM)
+        oldDOM.parentNode.replaceChild(newElement, oldDOM)
+    }
+    else if(oldVirtualDOM && oldVirtualDOM.type === virtualDOM.type){
         if(virtualDOM.type ==="text"){
             // update text
             updateTextNode(oldVirtualDOM, virtualDOM, oldDOM)
