@@ -35,15 +35,15 @@ let container = document.getElementById("root")
 
 
 // start: test class component 
-class Alert extends TinyReact.Component{
-  constructor(props){
-    super(props)
-  }
-  render() {
-    return <div>{this.props.name}, {this.props.age}</div>
-  }
-}
-TinyReact.render(<Alert name="john" age={2}/>, container)
+// class Alert extends TinyReact.Component{
+//   constructor(props){
+//     super(props)
+//   }
+//   render() {
+//     return <div>{this.props.name}, {this.props.age}</div>
+//   }
+// }
+// TinyReact.render(<Alert name="john" age={2}/>, container)
 
 // end: test class component 
 
@@ -84,7 +84,7 @@ const virtualDOM = (
     </div>
   )
   TinyReact.render(virtualDOM, container)
-    setTimeout(()=>{
-      TinyReact.render(modifyDOM,container)
-    },2000)
+  setTimeout(()=>{
+    TinyReact.render(modifyDOM,container)
+  },2000)
 // end: test modifyDOM 
