@@ -52,6 +52,7 @@ let container = document.getElementById("root")
 const virtualDOM = (
     <div className="container">
       <h1>你好 Tiny React</h1>
+      <p>will be deleted</p>
       <h2 data-test="test">(编码必杀技)</h2>
       <div>
         嵌套1 <div>嵌套 1.1</div>
@@ -79,7 +80,6 @@ const virtualDOM = (
       <span>这是edited一段内容</span>
       <button onClick={() => alert("hello")}>点击我</button>
       <h6>这个将会被删除&replaced with new one</h6>
-      2, 3
       <input type="text" value="13" />
     </div>
   )

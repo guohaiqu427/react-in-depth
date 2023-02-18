@@ -2,6 +2,8 @@ import createDOMElement from "./createDOMElement"
 import mountElement from "./mountElement"
 import updateNodeElements from "./updateNodeElement"
 import updateTextNode from "./updateTextNode"
+import unmountNode from "./unmountNode"
+
 export default function diff( virtualDOM,container,oldDOM) {
     const oldVirtualDOM = oldDOM && oldDOM._virtualDOM
     if(!oldDOM){
@@ -21,8 +23,14 @@ export default function diff( virtualDOM,container,oldDOM) {
         }
         virtualDOM.children.forEach((child, i) => {
             diff(child,oldDOM, oldDOM.childNodes[i])
-            
         });
+
+        let oldchildNodes = oldDOM.childNodes
+        if(oldchildNodes.length > virtualDOM.children.length){
+            for(let i = oldchildNodes.length-1; i>virtualDOM.children.length-1; i--){
+                unmountNode(oldchildNodes[i])
+            }
+        }
     }
   
 }
