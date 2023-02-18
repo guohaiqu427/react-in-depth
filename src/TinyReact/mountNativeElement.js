@@ -1,17 +1,7 @@
-import mountElement from "./mountElement";
+import createDOMElement from "./createDOMElement";
 
 export default function mountNativeElement(virtualDOM, container){
     // text node vs element node
-    let newElement = null
-    if(virtualDOM.type === "text") {
-        newElement = document.createTextNode(virtualDOM.props.textContent)
-    }else{
-        newElement = document.createElement(virtualDOM.type)
-    }
-
-    virtualDOM.children.forEach(child => {
-        mountElement(child, newElement)
-    });
-
+    let newElement = createDOMElement(virtualDOM)
     container.appendChild (newElement)
 }
