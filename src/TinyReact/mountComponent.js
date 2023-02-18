@@ -10,6 +10,7 @@ export default function mountComponent(virtualDOM, container) {
         nextVirtualDOM = extract(virtualDOM)
     }else{
     // class component 
+        nextVirtualDOM = extract_Component(virtualDOM)
     }
 
     if(isFunction(nextVirtualDOM)){
@@ -21,4 +22,13 @@ export default function mountComponent(virtualDOM, container) {
 
 function extract (virtualDOM){
     return virtualDOM.type(virtualDOM.props || {})
+}
+
+function extract_Component(virtualDOM){
+
+    const component = new virtualDOM.type()
+    const nextVirtualDOM = component.render()
+
+    return nextVirtualDOM
+
 }
