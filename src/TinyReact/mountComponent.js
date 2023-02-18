@@ -26,9 +26,8 @@ function extract (virtualDOM){
 
 function extract_Component(virtualDOM){
 
-    const component = new virtualDOM.type()
+    const component = new virtualDOM.type(virtualDOM.props ||{})
     const nextVirtualDOM = component.render()
-
     return nextVirtualDOM
 
 }

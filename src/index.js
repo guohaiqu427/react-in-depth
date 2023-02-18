@@ -36,10 +36,13 @@ let container = document.getElementById("root")
 
 // start: test class component 
 class Alert extends TinyReact.Component{
+  constructor(props){
+    super(props)
+  }
   render() {
-    return <div>class component</div>
+    return <div>{this.props.name}, {this.props.age}</div>
   }
 }
-TinyReact.render(<Alert />, container)
+TinyReact.render(<Alert name="john" age={2}/>, container)
 
 // end: test class component 
