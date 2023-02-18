@@ -1,5 +1,6 @@
-import createElement from "./createElement.JS";
-
+import createElement from "./createElement.js";
+import render from "./render.js"
 export default{
-    createElement
+    createElement,
+    render
 }
