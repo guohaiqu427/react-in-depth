@@ -24,12 +24,12 @@ let container = document.getElementById("root")
 // end: test native element 
 
 // start: test function component 
-  // function Demo() {
-  //   return <div>&hearts;</div>
-  // }
-  // function Heart(props) {
-  //   return <div>{ props.title} <Demo /></div>
-  // }
+  function Demo() {
+    return <div>&hearts;</div>
+  }
+  function Heart(props) {
+    return <div>{ props.title} <Demo /></div>
+  }
   // TinyReact.render(<Heart title="1"/>, container)
 // end: test function component 
 
@@ -117,4 +117,6 @@ class Alert extends TinyReact.Component {
 }
 
 TinyReact.render(<Alert name="john" age= {3}/>, container)
+
+setTimeout(()=>{TinyReact.render(<Heart title = "hi"/>, container)},2000)
 // end: test setState
