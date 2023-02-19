@@ -15,5 +15,9 @@ export default function createDOMElement(virtualDOM){
 
         });
 
+        if(virtualDOM.props && virtualDOM.props.ref){
+            virtualDOM.props.ref(newElement)
+        }
+
         return newElement
 }

@@ -92,31 +92,53 @@ let container = document.getElementById("root")
 
 
 // start： test setState 
-class Alert extends TinyReact.Component {
+// class Alert extends TinyReact.Component {
+//   constructor(props){
+//     super(props)
+//   }
+//   componentWillReceiveProps(nextProps){
+//     console.log("componentWillReceiveProps")
+//   }
+//   componentWillUpdate(nextProps){
+//     console.log("componentWillUpdate")
+//   }
+//   componentDidUpdate(prevProps){
+//     console.log("componentDidUpdate")
+//   }
+
+//   render(){
+//     return (
+//       <div>
+//         {this.props.name}
+//       </div>
+//     )
+//   }
+// }
+
+// TinyReact.render(<Alert name="john"/>, container)
+
+// setTimeout(()=>{
+//   TinyReact.render(<Alert name="john" />, container)},2000)
+// end: test setState
+
+
+// start: test ref 
+class DemoRef extends TinyReact.Component {
   constructor(props){
     super(props)
+    this.handleClick = this.handleClick.bind(this)
   }
-  componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps")
+  handleClick(){
+    console.log(this.input.value)
   }
-  componentWillUpdate(nextProps){
-    console.log("componentWillUpdate")
-  }
-  componentDidUpdate(prevProps){
-    console.log("componentDidUpdate")
-  }
-
   render(){
     return (
       <div>
-        {this.props.name}
+        <input type="text" ref = {input=> {this.input = input}}></input>
+        <button onClick={this.handleClick}>click</button>
       </div>
     )
   }
 }
-
-TinyReact.render(<Alert name="john"/>, container)
-
-setTimeout(()=>{
-  TinyReact.render(<Alert name="john" />, container)},2000)
-// end: test setState
+TinyReact.render(<DemoRef/>, container)
+// end: test ref
