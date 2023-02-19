@@ -123,18 +123,36 @@ let container = document.getElementById("root")
 
 
 // start: test ref 
+class Alert extends TinyReact.Component {
+  constructor(props){
+    super(props)
+  }
+  componentDidMount(){
+    console.log("component did mount")
+  }
+  render(){
+    return (
+      <div>
+        {this.props.name}
+      </div>
+    )
+  }
+}
 class DemoRef extends TinyReact.Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this)
   }
+
   handleClick(){
     console.log(this.input.value)
+    console.log(this.alert)
   }
   render(){
     return (
       <div>
         <input type="text" ref = {input=> {this.input = input}}></input>
+        <Alert ref={alert=> this.alert = alert} name="joe"/>
         <button onClick={this.handleClick}>click</button>
       </div>
     )
