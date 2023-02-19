@@ -123,40 +123,92 @@ let container = document.getElementById("root")
 
 
 // start: test ref 
-class Alert extends TinyReact.Component {
-  constructor(props){
+// class Alert extends TinyReact.Component {
+//   constructor(props){
+//     super(props)
+//   }
+//   componentDidMount(){
+//     console.log("component did mount")
+//   }
+//   render(){
+//     return (
+//       <div>
+//         {this.props.name}
+//       </div>
+//     )
+//   }
+// }
+// class DemoRef extends TinyReact.Component {
+//   constructor(props){
+//     super(props)
+//     this.handleClick = this.handleClick.bind(this)
+//   }
+
+//   handleClick(){
+//     console.log(this.input.value)
+//     console.log(this.alert)
+//   }
+//   render(){
+//     return (
+//       <div>
+//         <input type="text" ref = {input=> {this.input = input}}></input>
+//         <Alert ref={alert=> this.alert = alert} name="joe"/>
+//         <button onClick={this.handleClick}>click</button>
+//       </div>
+//     )
+//   }
+// }
+// TinyReact.render(<DemoRef/>, container)
+// end: test ref
+
+
+
+class KeyDemo extends TinyReact.Component {
+  constructor(props) {
     super(props)
-  }
-  componentDidMount(){
-    console.log("component did mount")
-  }
-  render(){
-    return (
-      <div>
-        {this.props.name}
-      </div>
-    )
-  }
-}
-class DemoRef extends TinyReact.Component {
-  constructor(props){
-    super(props)
+    this.state = {
+      persons: [
+        {
+          id: 1,
+          name: "张三"
+        },
+        {
+          id: 2,
+          name: "李四"
+        },
+        {
+          id: 3,
+          name: "王五"
+        },
+        {
+          id: 4,
+          name: "赵六"
+        }
+      ]
+    }
     this.handleClick = this.handleClick.bind(this)
   }
-
-  handleClick(){
-    console.log(this.input.value)
-    console.log(this.alert)
+  handleClick() {
+    const newState = JSON.parse(JSON.stringify(this.state))
+    // newState.persons.push(newState.persons.shift())
+    newState.persons.splice(1, 0, { id: 100, name: "李逵" })
+    // newState.persons.pop()
+    this.setState(newState)
   }
-  render(){
+  render() {
     return (
       <div>
-        <input type="text" ref = {input=> {this.input = input}}></input>
-        <Alert ref={alert=> this.alert = alert} name="joe"/>
-        <button onClick={this.handleClick}>click</button>
+        <ul>
+          {this.state.persons.map(person => (
+            <li key={person.id}>
+              {person.name}
+            </li>
+          ))}
+        </ul>
+        <button onClick={this.handleClick}>按钮</button>
       </div>
     )
   }
 }
-TinyReact.render(<DemoRef/>, container)
-// end: test ref
+
+TinyReact.render(<KeyDemo />, root)
