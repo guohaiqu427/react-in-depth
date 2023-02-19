@@ -68,9 +68,27 @@ export default function diff( virtualDOM,container,oldDOM) {
 
         let oldchildNodes = oldDOM.childNodes
         if(oldchildNodes.length > virtualDOM.children.length){
-            for(let i = oldchildNodes.length-1; i>virtualDOM.children.length-1; i--){
-                unmountNode(oldchildNodes[i])
+            if(hasNoKey){
+                for(let i = oldchildNodes.length-1; i>virtualDOM.children.length-1; i--){
+                    unmountNode(oldchildNodes[i])
+                }
+            }else{
+                for(let i=0; i<oldchildNodes.length; i++){
+                    let oldChild = oldchildNodes[i]
+                    let oldChildKey = oldChild._virtualDOM.props.key
+                    let found = false
+                    for(let n=0; n<virtualDOM.children.length; n++){
+                         if(virtualDOM.children[n].props.key ===oldChildKey){
+                            found = true
+                            break
+                         }
+                    }
+                    if(!found){
+                        unmountNode(oldChild)
+                    }
+                }
             }
+           
         }
     }
   
