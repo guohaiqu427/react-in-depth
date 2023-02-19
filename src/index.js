@@ -95,28 +95,28 @@ let container = document.getElementById("root")
 class Alert extends TinyReact.Component {
   constructor(props){
     super(props)
-    this.state = {
-      title: "Default",
-    }
-    this.handleClick = this.handleClick.bind(this)
   }
-  handleClick(){
-    this.setState({title : "changed"})
+  componentWillReceiveProps(nextProps){
+    console.log("componentWillReceiveProps")
   }
+  componentWillUpdate(nextProps){
+    console.log("componentWillUpdate")
+  }
+  componentDidUpdate(prevProps){
+    console.log("componentDidUpdate")
+  }
+
   render(){
-    console.log(this.state)
     return (
       <div>
         {this.props.name}
-        {this.props.age}
-        <div>{this.state.title}</div>
-        <button onClick={this.handleClick}>change</button>
       </div>
     )
   }
 }
 
-TinyReact.render(<Alert name="john" age= {3}/>, container)
+TinyReact.render(<Alert name="john"/>, container)
 
-setTimeout(()=>{TinyReact.render(<Alert name="doe" age= {1}/>, container)},2000)
+setTimeout(()=>{
+  TinyReact.render(<Alert name="john" />, container)},2000)
 // end: test setState
